@@ -23,6 +23,7 @@ export class UsersController {
     }
 
     @Get(':id')
+    @UseGuards(new AuthGuard())
     async findOne(@Param() params: any, @Res({ passthrough: true }) res: Response): Promise<any> {
         res
             .header({'X-Total-Count': 1})
@@ -31,6 +32,7 @@ export class UsersController {
     }
 
     @Post()
+    @UseGuards(new AuthGuard())
     async create(
         @Body() userData: { name: string, username: string, email: string, phone: string, website: string },
     ): Promise<UserModel> {
@@ -41,6 +43,7 @@ export class UsersController {
     }
 
     @Delete(':id')
+    @UseGuards(new AuthGuard())
     async deleteUser(@Param('id') id: string): Promise<UserModel> {
         return this.userService.deleteUser({ id: Number(id) });
     }

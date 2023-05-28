@@ -21,11 +21,13 @@ export class PostsController {
     }
 
     @Get(':id')
+    @UseGuards(new AuthGuard())
     async findOne(@Param() params: any): Promise<any> {
         return this.postService.post({ id: Number(params.id) });
     }
 
     @Post()
+    @UseGuards(new AuthGuard())
     async create(
         @Body() postData: { userId: number; title: string; body: string },
     ): Promise<PostModel> {
@@ -39,6 +41,7 @@ export class PostsController {
     }
 
     @Put(':id')
+    @UseGuards(new AuthGuard())
     async update(
         @Body() postData: { id: number;  userId: number; title: string; body: string },
     ): Promise<PostModel> {
@@ -50,6 +53,7 @@ export class PostsController {
     }
 
     @Delete(':id')
+    @UseGuards(new AuthGuard())
     async deletePost(@Param('id') id: string): Promise<PostModel> {
         return this.postService.deletePost({ id: Number(id) });
     }
