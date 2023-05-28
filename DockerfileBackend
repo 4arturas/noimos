@@ -1,0 +1,15 @@
+FROM node:16-alpine as base
+#FROM gcr.io/distroless/nodejs:16 as base
+
+WORKDIR /backend
+
+COPY backend/nest-cli.json ./
+COPY backend/package.json ./
+COPY backend/tsconfig.build.json ./
+COPY backend/tsconfig.json ./
+COPY backend/src ./src
+
+# Install dependencies
+RUN npm install
+
+CMD ["npm", "run", "start"]
