@@ -1,3 +1,9 @@
+# Postgres
+```sh
+docker run -p 5432:5432 --name some-postgres -e POSTGRES_PASSWORD=x postgres
+````
+
+
 # docker compose
 ```sh
 docker-compose up

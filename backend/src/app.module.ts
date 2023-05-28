@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { CatsController } from './cats/cats.controller';
+import { UsersController } from './users/users.controller';
+import { PostsController } from './posts/posts.controller';
 import * as SuperTokensConfig from './config';
 
 @Module({
@@ -14,7 +16,7 @@ import * as SuperTokensConfig from './config';
       appInfo: SuperTokensConfig.appInfo,
     }),
   ],
-  controllers: [AppController, CatsController],
+  controllers: [AppController, CatsController, UsersController, PostsController],
   providers: [AppService],
 })
 export class AppModule {}

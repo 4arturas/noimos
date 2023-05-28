@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: somePassword
       POSTGRES_DB: supertokens
     ports:
-      - 5432:5432
+      - 5433:5433
     networks:
       - app_network
     restart: unless-stopped
@@ -25,7 +25,7 @@ services:
     ports:
       - 3567:3567
     environment:
-      POSTGRESQL_CONNECTION_URI: "postgresql://supertokens_user:somePassword@db:5432/supertokens"
+      POSTGRESQL_CONNECTION_URI: "postgresql://supertokens_user:somePassword@db:5433/supertokens"
     networks:
       - app_network
     restart: unless-stopped
@@ -36,29 +36,20 @@ services:
       timeout: 5s
       retries: 5
 
-  backend:
-    build:
-      context: ./backend
-      target: runner
-    volumes:
-      - .:/app
-    command: npm run start
-    ports:
-      - "3001:3001"
+  db-data:
+    image: 'postgres:latest'
     environment:
-      NODE_ENV: development
-
-  frontend:
-    build:
-      context: ./frontend
-      target: runner
-    volumes:
-      - .:/app
-    command: npm run start
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
     ports:
-      - "3000:3000"
-    environment:
-      NODE_ENV: development
+      - 5432:5432
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'pg_isready']
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 networks:
   app_network:
