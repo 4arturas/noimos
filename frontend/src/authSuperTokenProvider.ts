@@ -4,6 +4,20 @@ import Session from "supertokens-auth-react/recipe/session";
 interface User {
     username:string, password:string
 }
+const ifCantLoginThenSignup = async (user:User) => {
+    const response = await ThirdPartyEmailPassword.emailPasswordSignUp({
+            formFields: [
+                {
+                    id: "email",
+                    value: user.username,
+                },
+                {
+                    id: "password",
+                    value: user.password,
+                },
+            ],
+        });
+}
 
 const authProvider = {
     login: async (user:User) => {
@@ -19,8 +33,9 @@ const authProvider = {
                 },
             ],
         });
-        console.log(response.status);
         if (response.status === "WRONG_CREDENTIALS_ERROR") {
+            await ifCantLoginThenSignup( user ); /*needs to be replaced with signup form*/
+
             // the input email / password combination did not match,
             // so we show an appropriate error message to the user
             // this.errorMessage = "Invalid credentials";

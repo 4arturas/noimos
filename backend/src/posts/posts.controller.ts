@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards} from '@nestjs/common';
 import {AuthGuard} from "../auth/auth.guard";
-import {Response} from "express";
+import {Request, Response} from "express";
 import {PostService} from "./post.service";
 import {Post as PostModel} from '@prisma/client';
 

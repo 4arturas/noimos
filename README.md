@@ -1,3 +1,29 @@
+# Instruction
+
+## Start supertokens server and Postgres
+```sh
+cd ~/IdeaProjects/noimos && docker-compose up
+````
+
+## Initialize database
+```sh
+cd ~/IdeaProjects/noimos/backend && npx prisma migrate dev --name init
+````
+
+## Start backend
+```sh
+cd ~/IdeaProjects/noimos/backend && npm run start:dev
+````
+
+## Start fronted
+```sh
+cd ~/IdeaProjects/noimos/frontend && npm run start
+````
+
+
+Todo: implement sign up form
+
+
 # Postgres
 ```sh
 docker run -p 5432:5432 --name some-postgres -e POSTGRES_PASSWORD=x postgres
