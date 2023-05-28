@@ -1,5 +1,8 @@
 # Instruction
 
+## Video
+https://drive.google.com/file/d/1oS8lxUM06RsoDjWkAn4WSPVbxYRvmf23/view?usp=sharing
+
 ## Start supertokens server and Postgres
 ```sh
 cd ~/IdeaProjects/noimos && docker-compose up
