@@ -1,15 +1,22 @@
-import {Controller, Get, Param, Req, Res, UseGuards} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Req, Res, UseGuards} from '@nestjs/common';
 import {AuthGuard} from "../auth/auth.guard";
 // import { GenericResponse } from './generic-response.decorator'
 import type { Response } from 'express'
+import {UserService} from "./user.service";
+import {Post as PostModel, User as UserModel} from ".prisma/client";
 
 @Controller('users')
 export class UsersController {
+
+    constructor(
+        private readonly userService: UserService,
+    ) {}
+
+
     @Get()
     @UseGuards(new AuthGuard())
     async findAll(@Req() request: Request, @Res({ passthrough: true }) res: Response): Promise<any> {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
-        const users = await response.json()
+        const users:any = await this.userService.users({});
         res
             .header({'X-Total-Count': users.length})
             .header({'Access-Control-Expose-Headers': 'X-Total-Count'});
@@ -18,11 +25,25 @@ export class UsersController {
 
     @Get(':id')
     async findOne(@Param() params: any, @Res({ passthrough: true }) res: Response): Promise<any> {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`);
-        const user = await response.json()
         res
             .header({'X-Total-Count': 1})
             .header({'Access-Control-Expose-Headers': 'X-Total-Count'});
-        return user;
+        return this.userService.user({ id: Number(params.id) });
     }
+
+    @Post()
+    async create(
+        @Body() userData: { name: string, username: string, email: string, phone: string, website: string },
+    ): Promise<UserModel> {
+        const { name, username, email, phone, website } = userData;
+        return this.userService.createUser({
+            name, username, email, phone, website
+        });
+    }
+
+    @Delete(':id')
+    async deleteUser(@Param('id') id: string): Promise<UserModel> {
+        return this.userService.deleteUser({ id: Number(id) });
+    }
+
 }

@@ -1,14 +1,23 @@
-import {Controller, Get, Param, Req, Res, UseGuards} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards} from '@nestjs/common';
 import {AuthGuard} from "../auth/auth.guard";
 import {Response} from "express";
+import {PostService} from "./post.service";
+import { Post as PostModel, Prisma } from '@prisma/client';
 
 @Controller('posts')
 export class PostsController {
+    constructor(
+        private readonly postService: PostService,
+    ) {}
     @Get()
-    // @UseGuards(new AuthGuard())
+    @UseGuards(new AuthGuard())
     async findAll(@Req() request: Request, @Res({ passthrough: true }) res: Response): Promise<any> {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        const posts = await response.json()
+
+         const posts:any = await this.postService.posts({});
+
+        // const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+        // const posts = await response.json()
+
         res
             .header({'X-Total-Count': posts.length})
             .header({'Access-Control-Expose-Headers': 'X-Total-Count'});
@@ -17,12 +26,36 @@ export class PostsController {
     }
 
     @Get(':id')
-    async findOne(@Param() params: any, @Res({ passthrough: true }) res: Response): Promise<any> {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
-        const post = await response.json()
-        res
-            .header({'X-Total-Count': 1})
-            .header({'Access-Control-Expose-Headers': 'X-Total-Count'});
-        return post;
+    async findOne(@Param() params: any): Promise<any> {
+        return this.postService.post({ id: Number(params.id) });
+    }
+
+    @Post()
+    async create(
+        @Body() postData: { userId: number; title: string; body: string },
+    ): Promise<PostModel> {
+        const { userId, title, body } = postData;
+        console.log(postData);
+        return this.postService.createPost({
+            userId,
+            title,
+            body,
+        });
+    }
+
+    @Put(':id')
+    async update(
+        @Body() postData: { id: number;  userId: number; title: string; body: string },
+    ): Promise<PostModel> {
+        const { id, title, body } = postData;
+        return this.postService.updatePost({
+            where: { id: Number(id) },
+            data: { title, body },
+        });
+    }
+
+    @Delete(':id')
+    async deletePost(@Param('id') id: string): Promise<PostModel> {
+        return this.postService.deletePost({ id: Number(id) });
     }
 }

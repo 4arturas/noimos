@@ -6,6 +6,9 @@ import { CatsController } from './cats/cats.controller';
 import { UsersController } from './users/users.controller';
 import { PostsController } from './posts/posts.controller';
 import * as SuperTokensConfig from './config';
+import {PostService} from "./posts/post.service";
+import {UserService} from "./users/user.service";
+import {PrismaService} from "./prisma.service";
 
 @Module({
   imports: [
@@ -17,6 +20,6 @@ import * as SuperTokensConfig from './config';
     }),
   ],
   controllers: [AppController, CatsController, UsersController, PostsController],
-  providers: [AppService],
+  providers: [AppService, PrismaService, UserService, PostService],
 })
 export class AppModule {}
