@@ -1,9 +1,8 @@
 import {Body, Controller, Delete, Get, Param, Post, Req, Res, UseGuards} from '@nestjs/common';
 import {AuthGuard} from "../auth/auth.guard";
-// import { GenericResponse } from './generic-response.decorator'
 import type { Response } from 'express'
 import {UserService} from "./user.service";
-import {Post as PostModel, User as UserModel} from ".prisma/client";
+import {User as UserModel} from ".prisma/client";
 
 @Controller('users')
 export class UsersController {

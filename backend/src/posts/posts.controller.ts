@@ -2,7 +2,7 @@ import {Body, Controller, Delete, Get, Param, Post, Put, Req, Res, UseGuards} fr
 import {AuthGuard} from "../auth/auth.guard";
 import {Response} from "express";
 import {PostService} from "./post.service";
-import { Post as PostModel, Prisma } from '@prisma/client';
+import { Post as PostModel } from '@prisma/client';
 
 @Controller('posts')
 export class PostsController {
@@ -12,12 +12,7 @@ export class PostsController {
     @Get()
     @UseGuards(new AuthGuard())
     async findAll(@Req() request: Request, @Res({ passthrough: true }) res: Response): Promise<any> {
-
-         const posts:any = await this.postService.posts({});
-
-        // const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        // const posts = await response.json()
-
+        const posts:any = await this.postService.posts({});
         res
             .header({'X-Total-Count': posts.length})
             .header({'Access-Control-Expose-Headers': 'X-Total-Count'});
