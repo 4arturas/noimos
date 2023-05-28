@@ -21,16 +21,16 @@ CREATE TABLE "Post" (
 );
 
 
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(1, 'Sincere@april.biz,', 'Leanne Graham,', '1-770-736-8031 x56442,', 'Bret,', 'hildegard.org,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(2, 'Shanna@melissa.tv,', 'Ervin Howell,', '010-692-6593 x09125,', 'Antonette,', 'anastasia.net,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(3, 'Nathan@yesenia.net,', 'Clementine Bauch,', '1-463-123-4447,', 'Samantha,', 'ramiro.info,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(4, 'Julianne.OConner@kory.org,', 'Patricia Lebsack,', '493-170-9623 x156,', 'Karianne,', 'kale.biz,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(5, 'Lucio_Hettinger@annie.ca,', 'Chelsey Dietrich,', '(254)954-1289,', 'Kamren,', 'demarco.info,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(6, 'Karley_Dach@jasper.info,', 'Mrs. Dennis Schulist,', '1-477-935-8478 x6430,', 'Leopoldo_Corkery,', 'ola.org,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(7, 'Telly.Hoeger@billy.biz,', 'Kurtis Weissnat,', '210.067.6132,', 'Elwyn.Skiles,', 'elvis.io,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(8, 'Sherwood@rosamond.me,', 'Nicholas Runolfsdottir V,', '586.493.6943 x140,', 'Maxime_Nienow,', 'jacynthe.com,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(9, 'Chaim_McDermott@dana.io,', 'Glenna Reichert,', '(775)976-6794 x41206,', 'Delphine,', 'conrad.com,');
-INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(10, 'Rey.Padberg@karina.biz,', 'Clementina DuBuque,', '024-648-3804,', 'Moriah.Stanton,', 'ambrose.net,');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(1, 'Sincere@april.biz', 'Leanne Graham', '1-770-736-8031 x56442', 'Bret', 'hildegard.org');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(2, 'Shanna@melissa.tv', 'Ervin Howell', '010-692-6593 x09125', 'Antonette', 'anastasia.net');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(3, 'Nathan@yesenia.net', 'Clementine Bauch', '1-463-123-4447', 'Samantha', 'ramiro.info');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(4, 'Julianne.OConner@kory.org', 'Patricia Lebsack', '493-170-9623 x156', 'Karianne', 'kale.biz');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(5, 'Lucio_Hettinger@annie.ca', 'Chelsey Dietrich', '(254)954-1289', 'Kamren', 'demarco.info');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(6, 'Karley_Dach@jasper.info', 'Mrs. Dennis Schulist', '1-477-935-8478 x6430', 'Leopoldo_Corkery', 'ola.org');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(7, 'Telly.Hoeger@billy.biz', 'Kurtis Weissnat', '210.067.6132', 'Elwyn.Skiles', 'elvis.io');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(8, 'Sherwood@rosamond.me', 'Nicholas Runolfsdottir V', '586.493.6943 x140', 'Maxime_Nienow', 'jacynthe.com');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(9, 'Chaim_McDermott@dana.io', 'Glenna Reichert', '(775)976-6794 x41206', 'Delphine', 'conrad.com');
+INSERT INTO public."User"(id, email, "name", phone, username, website) VALUES(10, 'Rey.Padberg@karina.biz', 'Clementina DuBuque', '024-648-3804', 'Moriah.Stanton', 'ambrose.net');
 
 INSERT INTO public."Post"("userId", id, title, body) VALUES (1, 1, 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'quia et suscipit
 suscipit recusandae consequuntur expedita et cum
