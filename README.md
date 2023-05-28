@@ -5,6 +5,10 @@
 cd ~/IdeaProjects/noimos && docker-compose up
 ````
 
+```sh
+curl http://localhost:3567/hello
+````
+
 ## Initialize database
 ```sh
 cd ~/IdeaProjects/noimos/backend && npx prisma migrate dev --name init
